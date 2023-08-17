@@ -1,1 +1,5 @@
 # TODO
+FROM golang:latest
+RUN apt-get update && apt-get install -y
+COPY ../backend ./
+CMD go build && go run backend
