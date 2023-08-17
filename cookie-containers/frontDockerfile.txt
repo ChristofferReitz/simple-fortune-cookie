@@ -1,6 +1,0 @@
-# TODO
-FROM golang:latest
-RUN apt-get update && apt-get install -y
-COPY ../frontend ./
-CMD go build && go run frontend
-EXPOSE 9000
