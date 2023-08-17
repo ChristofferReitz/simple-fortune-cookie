@@ -1,0 +1,22 @@
+# TODO
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8082:8080"
+    depends_on:
+      - backend
+    #networks:
+    # - backendnetwork
+    environment:
+      - BACKEND_DNS=backend
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "9000:9000"
+    #networks:
+    #  - backendnetwork
