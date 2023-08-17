@@ -59,10 +59,10 @@ jobs:
 
 #logging in to docker account - using the secrets made in github
     - name: DockerHub login
-      run: echo "${{secrets.DH_PASSWORD}}" | docker login -u "${{secrets.secrets.DH_USERNAME}}" --password-stdin
+      run: echo "${{secrets.DH_PASSWORD}}" | docker login -u "${{secrets.DH_USERNAME}}" --password-stdin
 
     - name: Docker image build
-      run: docker build -t ${{secrets.DH_USERNAME}} | docker login -u ${{secrets.secrets.DH_USERNAME}}/autoapp:$GIT_COMMIT ./backend
+      run: docker build -t ${{secrets.DH_USERNAME}}/autoapp:$GIT_COMMIT ./backend
 
     - name: Push docker image to dockerhub
       run: docker push ${{ secrets.secrets.DH_USERNAME}}/}/autoapp:$GIT_COMMIT
