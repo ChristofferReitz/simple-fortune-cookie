@@ -26,11 +26,7 @@ jobs:
         with:
           go-version: 1.x  # Specify the desired Go version
 
-      # Step 3: Install project dependencies
-      - name: Install dependencies
-        run: go get -v -t -d ./...
-
-      # Step 4: Run tests
+      # Step 3: Run tests
       - name: Run tests
         run: go test -v ./...
 
