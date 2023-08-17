@@ -10,60 +10,18 @@ on:
     branches:
       - main
 
-env:
-  docker_username:  ${{ secrets.DOCKERHUB_USERNAME }}
-  docker_password:  ${{ secrets.DOCKERHUB_PASSWORD }}
-  GIT_COMMIT: ${{ github.sha }}
-
 jobs:
   build-and-test:
-    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code from the repository
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      # Step 2: Set up Go environment
-      - name: Set up Go
+      - name: setup
         uses: actions/setup-go@v2
         with:
-          go-version: 1.x  # Specify the desired Go version
-
-      # Step 3: Run tests
-      - name: Run tests
-        run: go test -v ./...
-
-      # Step 5: Mark the status check as successful
-      - name: Set status check
-        run: |
-          echo "Tests passed successfully!"
-          # Use GitHub API to mark the status check as successful
-          # This step ensures that the PR passes the required CI check
-
-      # Step 6: Check code formatting (optional)
-      - name: Check code formatting
-        run: go fmt ./...
-
-  build-and-push:
-    runs-on: ubuntu-latest
-    needs: build-and-test
-  #needs to write the dockerfile 
-  #to check if there is complications
-    permissions:
-      packages: write
-  
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-#logging in to docker account - using the secrets made in github
-    - name: DockerHub login
-      run: echo "${{secrets.DH_PASSWORD}}" | docker login -u "${{secrets.DH_USERNAME}}" --password-stdin
-
-    - name: Docker image build
-      run: docker build -t ${{secrets.DH_USERNAME}}/autoapp:$GIT_COMMIT ./backend
-
-    - name: Push docker image to dockerhub
-      run: docker push ${{ secrets.secrets.DH_USERNAME}}/}/autoapp:$GIT_COMMIT
+          go-version: 1.21
+      - name: frontend build
+        working-directory: frontend
+        run: go build
+      - name: running test
+        working-directory: frontend
+        run: go test ./...
