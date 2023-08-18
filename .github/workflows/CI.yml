@@ -49,4 +49,4 @@ jobs:
         run: docker images
           
       - name: Run Deploy
-        run: docker run -d -p 9000:9000 christofferreitz/frontend:
+        run: docker run -d -p 9000:9000 christofferreitz/frontend:latest
