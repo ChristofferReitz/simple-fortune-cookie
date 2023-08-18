@@ -42,7 +42,7 @@ jobs:
           tags: ethunnar/frontend:latest
           
       - name: Pull Docker Image
-        run: ethunnar/frontend:latest  # Change this to your DockerHub username and image name
+        run: ethunnar/frontend:latest
 
       - name: Run Deploy
-        run: docker run -d -p 9000:9000 ethunnar/frontend:latest  # Change this to your DockerHub username and image name
+        run: docker run -d -p 9000:9000 ethunnar/frontend:latest
