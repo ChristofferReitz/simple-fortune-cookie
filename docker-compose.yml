@@ -3,8 +3,7 @@ version: '3'
 services:
 
   frontend:
-    build:
-      context: ./frontend
+    image: christofferreitz/frontend:latest
     ports:
       - "8082:8080"
     depends_on:
@@ -15,8 +14,7 @@ services:
       - BACKEND_DNS=backend
 
   backend:
-    build:
-      context: ./backend
+    build: backend
     ports:
       - "9000:9000"
     #networks:

@@ -1,8 +1,7 @@
 # TODO
-FROM golang:latest
-WORKDIR /app
-RUN apt-get update && apt-get install -y
+FROM golang:1.21
+WORKDIR /myapp
 COPY . .
-RUN go build -o  frontend
+RUN go build -o frontend-app
 EXPOSE 9000
-CMD ["./frontend"]
+CMD ["./frontend-app"]
