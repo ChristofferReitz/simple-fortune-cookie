@@ -66,12 +66,12 @@ jobs:
         with:
           go-version: 1.21
 
-      - name: frontend build
-        working-directory: frontend
+      - name: backend build
+        working-directory: backend
         run: go build
 
       - name: running test
-        working-directory: frontend
+        working-directory: backend
         run: go test ./...
 
       - name: Set up Docker Buildx
@@ -83,14 +83,14 @@ jobs:
       - name: Build Docker Image
         uses: docker/build-push-action@v2
         with:
-          context: ./frontend
+          context: ./backend
           dockerfile: Dockerfile
           push: true
-          tags: christofferreitz/frontend:latest
+          tags: christofferreitz/backend:latest
           uses: docker/build-push-action@v2
           
       - name: Verify Image Pull
         run: docker images
           
       - name: Run Deploy
-        run: docker run -d -p 9000:9000 christofferreitz/frontend:latest
+        run: docker run -d -p 9000:9000 christofferreitz/backend:latest
