@@ -46,6 +46,7 @@ jobs:
           dockerfile: Dockerfile
           push: true
           tags: christofferreitz/frontend:latest
+          uses: docker/build-push-action@v2
           
       - name: Verify Image Pull
         run: docker images
@@ -56,6 +57,7 @@ jobs:
       - name: backend build
         working-directory: backend
         run: go build
+
       - name: Build Docker Image
         uses: docker/build-push-action@v2
         with:
@@ -63,6 +65,7 @@ jobs:
           dockerfile: Dockerfile
           push: true
           tags: christofferreitz/backend:latest
+          uses: docker/build-push-action@v2
           
       - name: Verify Image Pull
         run: docker images
