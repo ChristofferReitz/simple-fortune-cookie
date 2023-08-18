@@ -30,3 +30,19 @@ jobs:
       - name: running test
         working-directory: frontend
         run: go test ./...
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: . 
+          push: true
+          tags: ethunnar/frontend:latest
+
+      - name: Pull Docker Image
+        run: docker pull ethunnar/frontend:latest
+
+      - name: Run Deploy
+        run: docker run -d ethunnar/frontend:latest
