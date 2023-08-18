@@ -43,13 +43,13 @@ jobs:
           context: ./frontend
           dockerfile: Dockerfile
           push: true
-          tags: christofferreitz/frontend:latest
+          tags: christofferreitz/frontend
           
       - name: Verify Image Pull
         run: docker images
           
       - name: Pull Docker Image
-        run: christofferreitz/frontend:latest
+        run: christofferreitz/frontend
 
       - name: Run Deploy
         run: docker run -d -p 9000:9000 christofferreitz/frontend
