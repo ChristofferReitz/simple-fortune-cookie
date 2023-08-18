@@ -37,7 +37,8 @@ jobs:
       - name: Build Docker Image
         uses: docker/build-push-action@v2
         with:
-          context: .frontend
+          context: ./frontend
+          dockerfile: Dockerfile
           push: true
           tags: ethunnar/frontend:latest
           
