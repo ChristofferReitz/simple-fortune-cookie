@@ -45,8 +45,11 @@ jobs:
           push: true
           tags: christofferreitz/frontend:latest
           
+      - name: Verify Image Pull
+        run: docker images
+          
       - name: Pull Docker Image
         run: christofferreitz/frontend:latest
 
       - name: Run Deploy
-        run: docker run -d -p 9000:9000 christofferreitz/frontend:latest
+        run: docker run -it -p 9000:9000 christofferreitz/frontend:latest
