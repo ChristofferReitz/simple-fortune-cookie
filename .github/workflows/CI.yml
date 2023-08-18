@@ -53,22 +53,44 @@ jobs:
           
       - name: Run Deploy
         run: docker run -d -p 9000:9000 christofferreitz/frontend:latest
-# this part dont work:
-      - name: backend build
-        working-directory: backend
+
+  build-and-testicle:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: setup
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.21
+
+      - name: frontend build
+        working-directory: frontend
         run: go build
+
+      - name: running test
+        working-directory: frontend
+        run: go test ./...
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Build Docker Image
         uses: docker/build-push-action@v2
         with:
-          context: ./backend
+          context: ./frontend
           dockerfile: Dockerfile
           push: true
-          tags: christofferreitz/backend:latest
+          tags: christofferreitz/frontend:latest
           uses: docker/build-push-action@v2
           
       - name: Verify Image Pull
         run: docker images
           
       - name: Run Deploy
-        run: docker run -d -p 9000:9000 christofferreitz/backend:latest
+        run: docker run -d -p 9000:9000 christofferreitz/frontend:latest
