@@ -40,9 +40,9 @@ jobs:
           context: . 
           push: true
           tags: ethunnar/frontend:latest
-
+          
       - name: Pull Docker Image
-        run: docker pull ethunnar/frontend:latest
+        run: ethunnar/frontend:latest  # Change this to your DockerHub username and image name
 
       - name: Run Deploy
-        run: docker run -d ethunnar/frontend:latest
+        run: docker run -d -p 9000:9000 ethunnar/frontend:latest  # Change this to your DockerHub username and image name
