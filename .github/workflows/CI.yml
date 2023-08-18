@@ -49,4 +49,4 @@ jobs:
         run: christofferreitz/frontend-app:latest
 
       - name: Run Deploy
-        run: docker run -d -p 9000:9000 christofferreitz/frontend-app:latest
+        run: docker run -d -p 9000:9000 christofferreitz/frontend:latest
