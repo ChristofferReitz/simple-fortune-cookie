@@ -1,14 +1,16 @@
 name: Continuous Integration
 
 on:
-#on pull checks if the vode works 
+# on pull checks if the vode works 
   pull_request:
     branches:
       - main
+        03co
 # on push: checks the code being pushed
   push:
     branches:
       - main
+        03co
 
 jobs:
   build-and-test:
@@ -50,7 +52,7 @@ jobs:
           
       - name: Run Deploy
         run: docker run -d -p 9000:9000 christofferreitz/frontend:latest
-        
+
       - name: backend build
         working-directory: backend
         run: go build
