@@ -17,8 +17,3 @@ services:
     image: christofferreitz/backend:latest
     ports:
       - "9000:9000"
-<<<<<<< HEAD
-    #networks:
-    #  - backendnetwork
-=======
->>>>>>> 0620f41 (update)
