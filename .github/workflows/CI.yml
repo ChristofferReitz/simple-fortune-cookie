@@ -13,7 +13,7 @@ on:
       - 03co
 
 jobs:
-  build-and-test:
+  build-and-test-front:
     runs-on: ubuntu-latest
 
     steps:
@@ -54,7 +54,7 @@ jobs:
       - name: Run Deploy
         run: docker run -d -p 9000:9000 christofferreitz/frontend:latest
 
-  build-and-testicle:
+  build-and-test-back:
     runs-on: ubuntu-latest
 
     steps:
