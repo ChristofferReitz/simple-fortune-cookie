@@ -101,5 +101,5 @@ jobs:
     steps:
       - name: Run test-sh
         working-directory: testing-sh
-        run: bash testing.sh
+        run: testing.sh
 
