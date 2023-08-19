@@ -3,28 +3,19 @@ version: '3'
 services:
 
   frontend:
-    container_name: frontend
     image: christofferreitz/frontend:latest
     ports:
       - "8082:8080"
     depends_on:
       - backend
+    #networks:
+    # - backendnetwork
     environment:
       - BACKEND_DNS=backend
 
   backend:
-    container_name: backend
     image: christofferreitz/backend:latest
     ports:
       - "9000:9000"
-    depends_on:
-      - redis
-    environment:
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-
-  redis:
-    container_name: redis
-    image: redis:7.2
-    ports:
-      - "6379:6379"
+    #networks:
+    #  - backendnetwork
