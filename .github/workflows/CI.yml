@@ -100,5 +100,5 @@ jobs:
     needs: build-and-test-front
     steps:
       - name: Run test-sh
-        run: simple-fortune-cookie/testing-sh/testing.sh
+        run: testing-sh/testing.sh
 
