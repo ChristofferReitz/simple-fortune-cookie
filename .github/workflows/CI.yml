@@ -5,12 +5,12 @@ on:
   pull_request:
     branches:
       - main
-        03co
+      - 03co
 # on push: checks the code being pushed
   push:
     branches:
       - main
-        03co
+      - 03co
 
 jobs:
   build-and-test:
