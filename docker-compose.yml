@@ -14,7 +14,7 @@ services:
       - BACKEND_DNS=backend
 
   backend:
-    build: backend
+    image: christofferreitz/backend:latest
     ports:
       - "9000:9000"
     #networks:
