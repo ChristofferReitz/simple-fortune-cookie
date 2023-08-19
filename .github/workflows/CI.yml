@@ -100,6 +100,5 @@ jobs:
     needs: build-and-test-front
     steps:
       - name: Run test-sh
-        working-directory: testing-sh
-        run: testing.sh
+        run: /home/coder/simple-fortune-cookie/testing-sh/testing.sh
 
